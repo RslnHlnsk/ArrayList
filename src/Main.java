@@ -2,17 +2,18 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
-public class ToDoList {
-    private static List < String > tasks = new ArrayList < > ();
-    private static Scanner scanner = new Scanner(System.in);
+
+public class Main {
+    private static final List<String> tasks = new ArrayList<>();
+    private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
         boolean isContinue = true;
-        while(isContinue) {
+        while (isContinue) {
             showMenu();
             String option = scanner.nextLine();
 
-            switch(option) {
+            switch (option) {
                 case "0":
                     isContinue = false;
                     break;
@@ -40,10 +41,11 @@ public class ToDoList {
     private static void removeByKeyword() {
         System.out.print("Удалить дело по ключевому слову: ");
         String keyword = scanner.nextLine();
-        Iterator < String > item = tasks.iterator();
-        while(item.hasNext()) {
+        Iterator<String> item = tasks.iterator();
+
+        while (item.hasNext()) {
             String task = item.next();
-            if(task.contains(keyword)) {
+            if (task.contains(keyword)) {
                 item.remove();
                 System.out.println("Удалено!");
             }
@@ -53,7 +55,8 @@ public class ToDoList {
     private static void removeByTask() {
         System.out.println("Удалить дело по названию: ");
         String task = scanner.nextLine();
-        if(tasks.contains(task)) {
+
+        if (tasks.contains(task)) {
             tasks.remove(task);
             System.out.println("Удалено!");
         } else {
@@ -64,7 +67,8 @@ public class ToDoList {
     private static void removeByNum() {
         System.out.println("Удалить дело по номеру: ");
         int position = Integer.parseInt(scanner.nextLine()) - 1;
-        if(position >= 0 && position < tasks.size()) {
+
+        if (position >= 0 && position < tasks.size()) {
             tasks.remove(position);
             System.out.println("Удалено!");
         } else {
@@ -86,7 +90,7 @@ public class ToDoList {
 
     private static void showTasks() {
         System.out.println("\nВаш список дел: ");
-        for(int i = 0; i < tasks.size(); i++) {
+        for (int i = 0; i < tasks.size(); i++) {
             System.out.printf("%d. %s\n", i + 1, tasks.get(i));
         }
     }
